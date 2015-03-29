@@ -1,5 +1,5 @@
 # webs.coffee
-webs.coffee because great ideas happen while you're walking to get coffee
+because great ideas happen while you're walking to get coffee
 
 ## dependencies
 - mongodb -> `brew install mongodb` or `sudo apt-get install mongodb` on ubuntu 14
@@ -12,7 +12,7 @@ webs.coffee because great ideas happen while you're walking to get coffee
 
 ## deploy
 ```
-# if you don't have pip install that first
+# if you don't have pip, install that first
 curl https://bootstrap.pypa.io/get-pip.py > get-pip.py
 python get-pip.py # sudo?
 
@@ -20,7 +20,7 @@ python get-pip.py # sudo?
 pip install fabric
 
 # DEPLOY!
-fab -H <your-host-ip> -u <your-user-name> deploy:initial=yes,port=3002,mongo_port=27017,name=webs.coffee
+fab -H <your-host-ip> -u <your-user-name> deploy:initial=yes,name=webs.coffee
 # DEPLOY AGAIN!
 fab -H <your-host-ip> -u <your-user-name> deploy:initial=no,name=webs.coffee
 ```

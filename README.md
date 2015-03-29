@@ -20,7 +20,7 @@ python get-pip.py # sudo?
 pip install fabric
 
 # DEPLOY!
-fab -H <your-host-ip> -u <your-user-name> deploy:initial=yes,name=webs.coffee
-# DEPLOY AGAIN!
-fab -H <your-host-ip> -u <your-user-name> deploy:initial=no,name=webs.coffee
+fab -H <your-host-ip> -u <your-user-name> deploy:reload=yes,dest=~/,NODE_ENV=production,name=webs.coffee,DEBUG=*
+# DEPLOY AGAIN but gracefully reload the running process!
+fab -H <your-host-ip> -u <your-user-name> deploy:reload=no,name=webs.coffee
 ```

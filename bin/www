@@ -1,0 +1,21 @@
+#!/usr/bin/env node
+'use strict';
+
+var app = require('../app');
+var debug = require('debug')('webs.coffee:server');
+var http = require('http');
+var config = require('config');
+
+var port = config.get('PORT') || '3000';
+app.set('port', port);
+
+var server = http.createServer(app);
+
+server.listen(port);
+server.on('error', function(err) {
+	debug('' + err);
+});
+
+server.on('listening', function() {
+	debug('Listening on ' + server.address().port);
+});

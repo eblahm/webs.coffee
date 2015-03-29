@@ -1,0 +1,3 @@
+# default configuration
+PORT=3002
+STACKTRACES=true

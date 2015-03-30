@@ -1,2 +1,12 @@
-<h1>{{title}}</h1>
-<p>Welcome</p>
+
+<h1>Hello {{user.github.displayName}}</h1>
+
+
+{{#if otherUsers.length}}
+	<h2>Here Are Some Other Coffee Drinkers at Webs you might know...</h2>
+	<ul>
+	{{#each otherUsers}}
+		<li><h3>{{.}}</h3></li>
+	{{/each}}
+	</ul>
+{{/if}}

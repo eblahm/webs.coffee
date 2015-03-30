@@ -7,8 +7,16 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var config = require('config');
-
+var session = require('express-session');
+var auth = require('./lib/authentication');
+var mongoose = require('mongoose');
 var routes = require('./routes/index');
+var debug = require('debug')('coffee');
+
+var mongoUrl = config.get('MONGO_URL');
+mongoose.connect(mongoUrl);
+mongoose.connection.on('error', console.error.bind(console, 'error connecting to ' + mongoUrl));
+mongoose.connection.once('open', console.error.bind(console, 'successfully connected to ' + mongoUrl));
 
 var app = express();
 
@@ -21,10 +29,23 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
+
+app.use(session({secret: '<:O)'}));
+app.use(auth.initialize());
+app.use(auth.session());
+
 app.use(require('less-middleware')(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.get('/auth/github', auth.authenticate('github'));
+app.get('/auth/github/callback',
+	auth.authenticate('github', {failureRedirect: '/'}),
+	function(req, res) {
+		// Successful authentication, redirect home.
+		res.redirect('/');
+	}
+);
 
 app.use(function(req, res, next) {
 	var err = new Error('Not Found');
@@ -34,6 +55,7 @@ app.use(function(req, res, next) {
 
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
+	debug(err.stack);
 	res.render('error', {
 		message: err.message,
 		error: config.get('STACKTRACES') ? err : {}

@@ -35,7 +35,7 @@ module.exports = function(grunt) {
 			main: {
 				script: 'bin/www',
 				options: {
-					env: {'DEBUG': '*'},
+					env: {'DEBUG': 'coffee'},
 					ext: 'js,json,html',
 					ignore: ['node_modules/**']
 				}

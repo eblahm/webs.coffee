@@ -1,3 +1,11 @@
 # default configuration
+
 PORT=3002
 STACKTRACES=true
+
+MONGO_URL="mongodb://127.0.0.1:27017/webs-coffee"
+HOMEPAGE_URL="http://localhost:3002"
+
+[github]
+CLIENT_ID="<dont-put-your-secrets-in-this-file>"
+CLIENT_SECRET="<dont-put-your-secrets-in-this-file>"

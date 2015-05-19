@@ -32,8 +32,13 @@ app.use(cookieParser());
 
 if (process.env.NODE_ENV === 'production') {
 	var RedisStore = require('connect-redis')(session);
+	var r = require('redis-url').parse(config.get('REDIS_URL'));
 	app.use(session({
-		store: new RedisStore({client: config.get('REDIS_URL')}),
+		store: new RedisStore({
+			host: r.hostname,
+			port: r.port,
+			pass: r.password
+		}),
 		secret: 'keyboard cat'
 	}));
 } else {

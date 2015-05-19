@@ -34,6 +34,7 @@
     "morgan": "~1.5.1",
     "passport": "^0.2.1",
     "passport-github": "^0.1.5",
+    "redis-url": "^1.2.0",
     "request": "^2.54.0",
     "serve-favicon": "~2.2.0",
     "toml": "^2.2.1"

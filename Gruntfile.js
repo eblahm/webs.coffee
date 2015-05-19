@@ -89,6 +89,13 @@ module.exports = function(grunt) {
 		'githooks'
 	]);
 
+	grunt.registerTask('build', [
+		'jshint',
+		'jscs',
+		'less',
+		'autoprefixer',
+	]);
+
 	grunt.registerTask('start', [
 		'less',
 		'autoprefixer',

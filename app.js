@@ -30,7 +30,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
-app.use(session({secret: '<:O)'}));
+if (process.env.NODE_ENV === 'production') {
+	var RedisStore = require('connect-redis')(session);
+	app.use(session({
+		store: new RedisStore({client: config.get('REDIS_URL')}),
+		secret: 'keyboard cat'
+	}));
+} else {
+	app.use(session({secret: '<:O)'}));
+}
+
 app.use(auth.initialize());
 app.use(auth.session());
 

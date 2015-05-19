@@ -29,5 +29,4 @@ node_modules
 *.css
 *.pyc
 
-config
-!config/default.toml
+config/development.toml

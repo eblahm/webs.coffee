@@ -1,0 +1,5 @@
+# prod configuration
+
+STACKTRACES=false
+HOMEPAGE_URL="http://webs.coffee"
+

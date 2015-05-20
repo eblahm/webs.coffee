@@ -5,7 +5,4 @@ because great ideas happen while you're walking to get coffee
 `npm start`
 
 ## deploy
-```
-heroku git:remote -a websdotcoffee
-git push heroku master
-```
+Heroku is configured to deploy whenever it notices changes on master.

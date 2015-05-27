@@ -30,3 +30,4 @@ node_modules
 *.pyc
 
 config/development.toml
+public/js/main.js

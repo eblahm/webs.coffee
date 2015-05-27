@@ -1,5 +1,6 @@
 /* jshint node:true */
 'use strict';
+var babelify = require('babelify');
 
 module.exports = function(grunt) {
 
@@ -49,6 +50,16 @@ module.exports = function(grunt) {
 				options: {
 					spawn: false
 				}
+			},
+			js: {
+				files: [
+					'lib/client/*.js',
+					'lib/client/**/*.js'
+				],
+				tasks: ['browserify'],
+				options: {
+					spawn: false
+				}
 			}
 		},
 
@@ -81,6 +92,23 @@ module.exports = function(grunt) {
 			}
 		},
 
+		browserify: {
+			options: {
+				transform: [
+					babelify
+				],
+				browserifyOptions: {
+					debug: true
+				}
+			},
+			client: {
+				src: [
+					'lib/client/main.js',
+				],
+				dest: 'public/js/main.js'
+			}
+		},
+
 	});
 
 	grunt.registerTask('default', [
@@ -90,15 +118,15 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		'jshint',
-		'jscs',
+		// 'jshint',
+		// 'jscs',
 		'less',
 		'autoprefixer',
+		'browserify'
 	]);
 
 	grunt.registerTask('start', [
-		'less',
-		'autoprefixer',
+		'build',
 		'concurrent:tasks'
 	]);
 

@@ -3,7 +3,7 @@
 PORT=3002
 STACKTRACES=true
 
-MONGO_URL="mongodb://127.0.0.1:27017/webs-coffee"
+MONGO_URL="mongodb://127.0.0.1:17017/webs-coffee"
 HOMEPAGE_URL="http://localhost:3002"
 
 [github]

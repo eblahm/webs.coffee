@@ -118,8 +118,8 @@ module.exports = function(grunt) {
 	]);
 
 	grunt.registerTask('build', [
-		// 'jshint',
-		// 'jscs',
+		'jshint',
+		'jscs',
 		'less',
 		'autoprefixer',
 		'browserify'

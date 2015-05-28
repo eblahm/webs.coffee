@@ -39,7 +39,9 @@ if (process.env.NODE_ENV === 'production') {
 			port: r.port,
 			pass: r.password
 		}),
-		secret: 'keyboard cat'
+		secret: 'oatmeal',
+		rolling: true,
+		cookie: {expires: new Date(2020, 0, 1)}
 	}));
 } else {
 	app.use(session({secret: '<:O)'}));
